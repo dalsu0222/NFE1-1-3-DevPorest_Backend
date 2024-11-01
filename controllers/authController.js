@@ -127,7 +127,6 @@ const getGithubCallback = async (req, res) => {
       .status(201)
       .cookie("token", token, {
         httpOnly: true,
-        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         path: "/",
         maxAge: 24 * 60 * 60 * 1000,
       })
@@ -142,8 +141,6 @@ const logout = (req, res) => {
   // "token" 쿠키 삭제
   res.clearCookie("token", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     path: "/",
   });
   res.json("로그아웃 되었습니다.");
