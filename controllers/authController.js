@@ -4,7 +4,7 @@ const redirectURL =
   process.env.NODE_ENV === "production"
     ? `${process.env.SERVER_DEPLOY_URL}:${process.env.PORT}/api/auth/github/callback`
     : "http://localhost:8000/api/auth/github/callback";
-const frontMainURL = "http://localhost:5173/our";
+const frontMainURL = "http://localhost:5173/";
 // process.env.NODE_ENV === "production"
 //   ? `${process.env.SERVER_DEPLOY_URL}/api/auth/github/callback`
 //   : "http://localhost:5173/our";
@@ -127,7 +127,6 @@ const getGithubCallback = async (req, res) => {
       .status(201)
       .cookie("token", token, {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
         sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
         path: "/",
         maxAge: 24 * 60 * 60 * 1000,
