@@ -2,12 +2,12 @@ const jwt = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
 const redirectURL =
   process.env.NODE_ENV === "production"
-    ? `${process.env.SERVER_DEPLOY_URL}/api/auth/github/callback`
+    ? `${process.env.SERVER_DEPLOY_URL}:${process.env.PORT}/api/auth/github/callback`
     : "http://localhost:8000/api/auth/github/callback";
-const frontMainURL =
-  process.env.NODE_ENV === "production"
-    ? `${process.env.SERVER_DEPLOY_URL}/api/auth/github/callback`
-    : "http://localhost:5173/our";
+const frontMainURL = "http://localhost:5173/our";
+// process.env.NODE_ENV === "production"
+//   ? `${process.env.SERVER_DEPLOY_URL}/api/auth/github/callback`
+//   : "http://localhost:5173/our";
 
 const getGithubRedirectURL = (req, res) => {
   const githubAuthURL = `https://github.com/login/oauth/authorize?client_id=${process.env.GITHUB_CLIENT_ID}&redirect_uri=${redirectURL}&scope=user`;
