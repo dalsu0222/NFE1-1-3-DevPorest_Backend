@@ -127,6 +127,7 @@ const getGithubCallback = async (req, res) => {
       .status(201)
       .cookie("token", token, {
         path: "/",
+        secure: false,
         maxAge: 24 * 60 * 60 * 1000,
       })
       .redirect(frontMainURL);
@@ -141,8 +142,7 @@ const logout = (req, res) => {
   res.clearCookie("token", {
     httpOnly: true,
     path: "/",
-    secure: true,
-    sameSite: "none",
+    secure: false,
   });
   res.json("로그아웃 되었습니다.");
 };
