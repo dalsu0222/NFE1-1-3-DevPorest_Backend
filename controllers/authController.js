@@ -126,10 +126,7 @@ const getGithubCallback = async (req, res) => {
     res
       .status(201)
       .cookie("token", token, {
-        httpOnly: true,
         path: "/",
-        secure: true,
-        sameSite: "none",
         maxAge: 24 * 60 * 60 * 1000,
       })
       .redirect(frontMainURL);
